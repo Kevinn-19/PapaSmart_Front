@@ -63,13 +63,13 @@ function ProjectCard({ proyecto, onRefresh }) {
                                     onClick={(e) => { e.stopPropagation(); setIsEditOpen(true); setShowMenu(false); }}
                                     className="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors"
                                 >
-                                    <Edit2 size={16} className="text-blue-500" /> Editar Lote
+                                    <Edit2 size={16} className="text-blue-500" /> Editar Proyecto
                                 </button>
                                 <button
                                     onClick={handleDelete}
                                     className="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors"
                                 >
-                                    <Trash2 size={16} /> Eliminar Lote
+                                    <Trash2 size={16} /> Eliminar
                                 </button>
                             </div>
                         </>
@@ -98,7 +98,7 @@ function ProjectCard({ proyecto, onRefresh }) {
                         wordBreak: 'break-word' // Fuerza la ruptura de palabras gigantes
                     }}
                 >
-                    {proyecto.descripcion || "Sin descripción disponible para este lote. Agregue detalles para una mejor gestión de sus cultivos."}
+                    {proyecto.descripcion || "Sin descripción disponible para este proyecti. Agregue detalles para una mejor gestión de sus cultivos."}
                 </p>
             </div>
 
@@ -121,16 +121,16 @@ function ProjectCard({ proyecto, onRefresh }) {
                     onClick={() => navigate(`/proyecto/${projectId}`)}
                     className="w-full py-4 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-blue-600 transition-all active:scale-[0.98] shadow-lg shadow-slate-200"
                 >
-                    Detalles del Lote
+                    Detalles del Proyecto
                     <ArrowRight size={16} />
                 </button>
             </div>
 
             {isEditOpen && (
                 <EditProjectModal
-                    project={proyecto} // Cambiado de 'proyecto' a 'project'
+                    project={proyecto}
                     onClose={() => setIsEditOpen(false)}
-                    onRefresh={() => { // Cambiado de 'onSuccess' a 'onRefresh'
+                    onRefresh={() => {
                         setIsEditOpen(false);
                         if (typeof onRefresh === "function") onRefresh();
                     }}

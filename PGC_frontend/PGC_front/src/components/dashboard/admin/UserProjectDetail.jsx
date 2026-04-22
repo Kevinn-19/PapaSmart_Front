@@ -14,73 +14,73 @@ const diseaseInfo = [
         key: "Early_blight (Tizón Temprano)",
         name: "Tizón Temprano",
         images: [
-            "https://static.wixstatic.com/media/1b8a25_07d1faab9e194437a6624405845382f3~mv2.jpg",
-            "https://enfermedadespapa.inia.cl/imagenes/tizonTemprano/1.jpg",
-            "https://preview.redd.it/early-potato-blight-v0-3x6d5pjiu19f1.jpg?width=640&crop=smart&auto=webp&s=5c85ff4883741bad02c5aa166fc25f477f5a2125"
+            "../../../src/assets/InfoDiseaseProject/eb1.jpg",
+            "../../../src/assets/InfoDiseaseProject/eb2.jpg",
+            "../../../src/assets/InfoDiseaseProject/eb3.webp"
         ],
-        desc: "Provocada por el hongo Alternaria solani. Se manifiesta como manchas pequeñas y oscuras con anillos concéntricos.",
-        causas: "Altas temperaturas (24-29°C) y alternancia de periodos secos y húmedos.",
-        trata: "Aplicación de fungicidas (mancozeb), eliminación de restos y control de riego."
+        desc: "Provocada por el hongo Alternaria solani. Se manifiesta como manchas pequeñas, circulares y oscuras con anillos concéntricos (parecidos a un blanco de tiro). Ataca principalmente hojas viejas cerca del suelo.",
+        causas: "Altas temperaturas (24-29°C), alternancia de periodos secos y húmedos, y plantas debilitadas por falta de fertilización nitrogenada.",
+        trata: "Aplicación de fungicidas específicos (mancozeb o clorotalonil), eliminación de restos de cosecha y evitar el riego por aspersión que humedezca demasiado el follaje."
     },
     {
         key: "Late_blight (Tizón Tardío)",
         name: "Tizón Tardío",
         images: [
-            "https://agrobio.org/sites/default/files/inline-images/Tiz%C3%B3n%20tard%C3%ADo%20en%20la%20papa%20.jpg",
-            "https://miro.medium.com/1*XQm8ydsK4eL7BzBrfGYdrg.jpeg",
-            "https://cdn.portalfruticola.com/2022/09/atips09072022-5-1024x724.png"
+            "../../../src/assets/InfoDiseaseProject/lb1.jpg",
+            "../../../src/assets/InfoDiseaseProject/lb2.jpg",
+            "../../../src/assets/InfoDiseaseProject/lb3.png"
         ],
-        desc: "Causada por Phytophthora infestans. Aparecen manchas necróticas de aspecto aceitoso que se expanden rápido.",
-        causas: "Humedad superior al 90% y temperaturas frescas (10-20°C).",
-        trata: "Uso de variedades resistentes y fungicidas sistémicos inmediatos."
+        desc: "Causada por Phytophthora infestans, es la enfermedad más devastadora. Aparecen manchas necróticas de aspecto aceitoso o húmedo que se expanden rápidamente. En el envés de la hoja suele aparecer un moho blanquecino.",
+        causas: "Humedad relativa superior al 90% y temperaturas frescas (10-20°C). Se propaga rápidamente por el viento y el agua.",
+        trata: "Uso de variedades resistentes, control estricto de la humedad y aplicación de fungicidas sistémicos ante los primeros síntomas. Es vital actuar rápido."
     },
     {
         key: "Bacteria",
         name: "Bacteriosis / Marchitez",
         images: [
-            "https://enfermedadespapa.inia.cl/imagenes/marchitezBacteriana/1.jpg",
-            "https://panorama-agro.com/wp-content/uploads/2017/11/Ralstonia-solanacearum-S%C3%ADntomas-en-plantas-1920x1440.jpg",
-            "https://inaturalist-open-data.s3.amazonaws.com/photos/147631853/original.jpg"
+            "../../../src/assets/InfoDiseaseProject/b1.jpg",
+            "../../../src/assets/InfoDiseaseProject/b2.jpg",
+            "../../../src/assets/InfoDiseaseProject/b3.jpg"
         ],
-        desc: "Asociada a Marchitez Bacteriana. Causa amarillamiento y pudrición en los vasos conductores.",
-        causas: "Suelos contaminados y agua de riego infectada.",
-        trata: "Rotación de cultivos y eliminación inmediata de plantas enfermas."
+        desc: "Generalmente asociada a la Marchitez Bacteriana (Ralstonia solanacearum). Causa amarillamiento progresivo, marchitez repentina y pudrición en los vasos conductores.",
+        causas: "Suelos contaminados, agua de riego infectada, uso de herramientas no desinfectadas y heridas en las raíces.",
+        trata: "No existe cura química efectiva. Se recomienda rotación de cultivos (3-5 años), uso de semilla certificada y eliminación inmediata de plantas enfermas."
     },
     {
         key: "Fungi (Hongos)",
         name: "Hongos Foliares",
         images: [
-            "https://www.koppert.es/content/_processed_/8/7/csm_basal_rot_fusarium_oxysporum_tomato_koppert_49887b21db.jpg",
-            "https://profigen.com.br/content/workspaces/cmbs/pessoa/1/imgrep/600x750/doencas-fusarium-profigen-190211021111.jpg",
-            "https://profigen.com.br/content/workspaces/cmbs/pessoa/1/imgrep/600x750/doencas-fusarium-profigen-190211021156.jpg"
+            "../../../src/assets/InfoDiseaseProject/h1.webp",
+            "../../../src/assets/InfoDiseaseProject/h2.jpg",
+            "../../../src/assets/InfoDiseaseProject/h3.jpg"
         ],
-        desc: "Diversas micosis que afectan el tejido foliar obstruyendo la fotosíntesis.",
-        causas: "Exceso de sombra y falta de drenaje.",
-        trata: "Mejorar ventilación y aplicar fungicidas de amplio espectro."
+        desc: "Engloba diversas micosis que afectan el tejido foliar, obstruyendo la fotosíntesis y debilitando la estructura de la planta.",
+        causas: "Exceso de sombra, falta de drenaje en el suelo y alta densidad de siembra que impide el flujo de aire.",
+        trata: "Mejorar la ventilación, aplicar fungicidas de amplio espectro de forma preventiva y equilibrar el aporte de nitrógeno."
     },
     {
         key: "Pest (Plagas)",
         name: "Plagas e Insectos",
         images: [
-            "https://plantwiseplusknowledgebank.org/cms/10.1079/pwkb.20157800466/asset/87e6730c-9fc8-4155-afd8-0b72b0724bd8/assets/graphic/potato-moth-latin-am-2.jpg",
-            "https://content.peat-cloud.com/w400/potato-tuber-moth-1.jpg",
-            "https://assets.revistacultivar.com.br/a02b4-tra--a-da-batata.jpg"
+            "../../../src/assets/InfoDiseaseProject/p1.jpg",
+            "../../../src/assets/InfoDiseaseProject/p2.jpg",
+            "../../../src/assets/InfoDiseaseProject/p3.jpg"
         ],
-        desc: "Daños causados por Polilla de la Papa o Minadores.",
-        causas: "Climas secos y falta de depredadores naturales.",
-        trata: "Control biológico y trampas cromáticas."
+        desc: "Daños causados por insectos como la Polilla de la Papa o Minadores. Se observa defoliación, perforaciones o galerías en las hojas.",
+        causas: "Climas secos que favorecen la reproducción de insectos y falta de depredadores naturales en el ecosistema.",
+        trata: "Control biológico, uso de trampas cromáticas y aplicación de extractos orgánicos como aceite de Neem o jabón potásico."
     },
     {
         key: "Healthy (Sana)",
         name: "Hoja Saludable",
         images: [
-            "https://agroavances.com/img/noticias/4207_2.jpg",
-            "https://viaorganica.org/wp-content/uploads/planta-de-papa.-Por-Flickr-Badal-Sarker.jpg",
-            "https://www.invesa.com/wp-content/uploads/2020/10/Papa-600x450.jpg"
+            "../../../src/assets/InfoDiseaseProject/s1.jpg",
+            "../../../src/assets/InfoDiseaseProject/s2.jpg",
+            "../../../src/assets/InfoDiseaseProject/s3.jpg"
         ],
-        desc: "Color verde intenso y uniforme. Metabolismo óptimo.",
-        causas: "Correcta nutrición y riego balanceado.",
-        trata: "Mantener monitoreo constante."
+        desc: "La hoja presenta un color verde intenso y uniforme. No hay presencia de manchas ni decoloraciones, indicando un metabolismo óptimo.",
+        causas: "Correcta nutrición, riego balanceado y manejo preventivo exitoso.",
+        trata: "Continuar con el monitoreo constante y mantener el plan de fertilización rico en potasio para fortalecer las paredes celulares."
     }
 ];
 

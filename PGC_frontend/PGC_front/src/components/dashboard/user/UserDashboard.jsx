@@ -15,9 +15,9 @@ function UserDashboard() {
     const navigate = useNavigate();
     const user = getUser();
 
-    // LÓGICA DE PLAN: 0 = Free, 1 = Premium
     const isPremium = Number(user?.estado) === 1;
 
+    // Función que recarga la data desde el servidor
     const fetchProyectos = async () => {
         try {
             const userId = user?.id || user?.id_usuario;
@@ -60,7 +60,6 @@ function UserDashboard() {
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             className="group flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 p-1.5 pr-4 rounded-2xl transition-all duration-300 outline-none"
                         >
-                            {/* Avatar Dinámico: Ámbar si es Premium */}
                             <div className={`w-9 h-9 rounded-xl flex items-center justify-center font-black uppercase text-sm shadow-sm transition-colors ${isPremium
                                 ? "bg-amber-400 text-amber-900 shadow-amber-500/20"
                                 : "bg-white text-green-700"
@@ -72,8 +71,6 @@ function UserDashboard() {
                                 <p className="text-sm font-black text-white whitespace-nowrap">
                                     {user?.nombres?.trim().split(' ')[0]} {user?.apellidos?.trim().split(' ')[0] || ""}
                                 </p>
-
-                                {/* Badge de Plan usando los estilos de UserTable */}
                                 <div className="flex items-center gap-1">
                                     {isPremium ? (
                                         <div className="flex items-center gap-1 mt-0.5">
@@ -85,11 +82,9 @@ function UserDashboard() {
                                     )}
                                 </div>
                             </div>
-
                             <ChevronDown size={18} className={`text-white/70 transition-transform duration-300 ${isMenuOpen ? 'rotate-180' : ''}`} />
                         </button>
 
-                        {/* Menú Dropdown */}
                         {isMenuOpen && (
                             <div className="absolute right-0 mt-3 w-60 bg-white rounded-3xl shadow-2xl border border-slate-100 p-2.5 z-50 animate-in fade-in zoom-in-95">
                                 <button
@@ -135,7 +130,13 @@ function UserDashboard() {
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {proyectos.length > 0 ? (
-                            proyectos.map((p) => <ProjectCard key={p.id_proyecto || p.id} proyecto={p} />)
+                            proyectos.map((p) => (
+                                <ProjectCard
+                                    key={p.id_proyecto || p.id}
+                                    proyecto={p}
+                                    onRefresh={fetchProyectos} // IMPORTANTE: Pasamos la función
+                                />
+                            ))
                         ) : (
                             <div className="col-span-full py-28 text-center bg-white rounded-[3rem] border-2 border-dashed border-slate-200 px-10 shadow-inner">
                                 <div className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 ${isPremium ? "bg-amber-100 text-amber-600" : "bg-green-100 text-green-700"

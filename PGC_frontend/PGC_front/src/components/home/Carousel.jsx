@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const images = [
-    "https://solofruver.com/wp-content/uploads/2020/05/agrotendencia-papatransgenica.jpg",
-    "https://agriculture.basf.com/api/imaging/focalarea/16x9/3872x/dam/jcr%3A90c36d47-47f9-3cac-89e2-df4a6c8a7298/CO-cultivo-de-papa.jpg",
-    "https://blog.cambiagro.com/wp-content/uploads/2024/07/cover-guia-cutlivo-papa.jpg",
-    "https://cdn0.ecologiaverde.com/es/posts/6/0/1/cuando_cosechar_papas_o_patatas_2106_3_600.jpg",
-    "https://static.vecteezy.com/system/resources/thumbnails/073/978/305/small/potatoes-growing-in-a-sunny-farm-field-fresh-potatoes-grow-in-rich-soil-surrounded-by-green-leaves-under-a-bright-sky-highlighting-agricultural-growth-photo.jpg",
-    "https://agriculture.basf.com/api/imaging/focalarea/16x9/4096x/dam/jcr%3Af98d1f4c-1f02-3a61-b6f1-53308e2bf956/CL-cultivo-de-papa.jpg",
-    "https://i.pinimg.com/736x/e1/4e/76/e14e768850746d79f660590ae2dbaad2.jpg"
+    "../../../src/assets/home/c1.jpg",
+    "../../../src/assets/home/c2.webp",
+    "../../../src/assets/home/c3.jpg",
+    "../../../src/assets/home/c4.jpg",
+    "../../../src/assets/home/c5.jpg",
+    "../../../src/assets/home/c6.webp",
+    "../../../src/assets/home/c7.jpg"
 ];
 
 function Carousel() {
@@ -37,7 +37,6 @@ function Carousel() {
                         return (
                             <motion.div
                                 key={`${images[imgIdx]}-${offset}`}
-                                // 🌟 Animación de entrada: Suave desde el fondo
                                 initial={{
                                     opacity: 0,
                                     scale: 0.5,

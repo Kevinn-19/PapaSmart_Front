@@ -40,7 +40,7 @@ function Login() {
                                 <CheckCircle2 size={18} className="text-green-400" /> Gestión masiva por lotes
                             </li>
                             <li className="flex items-center gap-3">
-                                <CheckCircle2 size={18} className="text-green-400" /> Reportes técnicos exportables
+                                <CheckCircle2 size={18} className="text-green-400" /> Reportes
                             </li>
                         </ul>
                     </motion.div>

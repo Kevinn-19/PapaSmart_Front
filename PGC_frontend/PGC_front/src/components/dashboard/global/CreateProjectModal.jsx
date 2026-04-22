@@ -65,7 +65,7 @@ function CreateProjectModal({ onClose, onSuccess, currentProjectsCount }) {
             <div className="bg-white w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
                 <div className="flex justify-between items-center mb-6">
                     <div>
-                        <h2 className="text-2xl font-black text-slate-800">Nuevo Lote</h2>
+                        <h2 className="text-2xl font-black text-slate-800">Nuevo Proyecto</h2>
                         {isRestricted && <span className="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded-md font-black uppercase tracking-tighter">Plan Gratuito</span>}
                     </div>
                     <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-full text-slate-400">

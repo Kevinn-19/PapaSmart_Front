@@ -5,7 +5,7 @@ export const loginUser = async (email, password) => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            correo: email, // 🔥 AQUÍ ESTÁ LA CLAVE
+            correo: email,
             password: password,
         }),
     });

@@ -68,11 +68,7 @@ function DiseaseModal({ disease, onClose, initialIndex = 0 }) {
                             <p className="text-gray-700 text-base leading-relaxed">{disease.desc}</p>
                         </div>
 
-                        <div className="bg-white p-5 rounded-2xl shadow-sm border-l-4 border-green-600">
-                            <h4 className="text-xs font-bold text-green-700 uppercase mb-2">Tratamiento sugerido</h4>
-                            {/* Texto reducido a sm para que quepa todo sin scroll excesivo */}
-                            <p className="text-gray-600 text-sm leading-relaxed">{disease.trata}</p>
-                        </div>
+
                     </div>
 
                     <div className="mt-auto pt-8">

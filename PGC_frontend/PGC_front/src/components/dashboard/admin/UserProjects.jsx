@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
     ArrowLeft, FolderOpen, Calendar,
-    Trash2, ArrowRight, Loader2, Settings, Info, Pencil, Clock, AlignLeft
+    Trash2, ArrowRight, Loader2, Settings, Info, Pencil
 } from "lucide-react";
 import Swal from "sweetalert2";
 import EditProjectModal from "../global/EditProjectModal";
+import ProjectInfoModal from "../global/ProjectInfoModal"; // <-- Nuevo Import
 
 const UserProjects = () => {
     const { userId } = useParams();
@@ -15,7 +16,9 @@ const UserProjects = () => {
     const [loading, setLoading] = useState(true);
     const [menuAbierto, setMenuAbierto] = useState(null);
 
+    // Estados de Modales
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
     const [selectedProject, setSelectedProject] = useState(null);
 
     const fetchUserProjects = async () => {
@@ -37,78 +40,9 @@ const UserProjects = () => {
         fetchUserProjects();
     }, [userId]);
 
-    const showInfo = (proyecto) => {
-        Swal.fire({
-            title: `
-                <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
-                    <div class="p-2 bg-blue-50 text-blue-600 rounded-lg">
-                        <FolderOpen size={20} />
-                    </div>
-                    <span class="font-black text-xl uppercase text-slate-800 tracking-tight">${proyecto.nombre_proyecto}</span>
-                </div>
-            `,
-            html: `
-                <div class="text-left mt-6 space-y-6">
-                    <div>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="p-1 bg-slate-100 text-slate-500 rounded-md"><AlignLeft size={14}/></span>
-                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Descripción del Proyecto</p>
-                        </div>
-                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                            <p class="text-slate-700 font-medium leading-relaxed">${proyecto.descripcion || 'Sin descripción disponible'}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-blue-50/50 p-4 rounded-2xl border border-blue-100">
-                            <div class="flex items-center gap-2 mb-1">
-                                <Calendar size={14} className="text-blue-500" />
-                                <p class="text-[10px] font-black text-blue-600 uppercase">Fecha</p>
-                            </div>
-                            <p class="text-slate-800 font-bold">${new Date(proyecto.fecha).toLocaleDateString()}</p>
-                        </div>
-                        <div class="bg-indigo-50/50 p-4 rounded-2xl border border-indigo-100">
-                            <div class="flex items-center gap-2 mb-1">
-                                <Clock size={14} className="text-indigo-500" />
-                                <p class="text-[10px] font-black text-indigo-600 uppercase">Hora</p>
-                            </div>
-                            <p class="text-slate-800 font-bold">${new Date(proyecto.fecha).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
-                        </div>
-                    </div>
-                </div>
-            `,
-            showConfirmButton: true,
-            confirmButtonText: 'Entendido',
-            confirmButtonColor: '#0f172a',
-            customClass: {
-                popup: 'rounded-[2.5rem] p-8',
-                confirmButton: 'rounded-xl px-8 py-3 font-bold uppercase text-xs tracking-widest'
-            }
-        });
-    };
-
-    const handleDelete = async (e, projectId) => {
-        e.stopPropagation();
-        setMenuAbierto(null);
-        const result = await Swal.fire({
-            title: '<span class="font-black">¿Eliminar proyecto?</span>',
-            text: "Esta acción no se puede deshacer.",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#ef4444',
-            confirmButtonText: 'Sí, eliminar',
-            customClass: { popup: 'rounded-[2.5rem]' }
-        });
-
-        if (result.isConfirmed) {
-            try {
-                const response = await fetch(`http://localhost:8000/proyectos/eliminar/${projectId}`, { method: 'DELETE' });
-                if (response.ok) {
-                    await Swal.fire({ title: 'Eliminado', icon: 'success', showConfirmButton: false, timer: 1000, customClass: { popup: 'rounded-[2.5rem]' } });
-                    fetchUserProjects();
-                }
-            } catch (error) { console.error(error); }
-        }
+    const handleOpenInfo = (proyecto) => {
+        setSelectedProject(proyecto);
+        setIsInfoModalOpen(true);
     };
 
     const handleOpenEdit = (proyecto) => {
@@ -117,12 +51,47 @@ const UserProjects = () => {
         setMenuAbierto(null);
     };
 
+    const handleDelete = async (e, projectId) => {
+        e.stopPropagation();
+        setMenuAbierto(null);
+        const result = await Swal.fire({
+            title: '<span class="font-black italic">¿ELIMINAR PROYECTO?</span>',
+            text: "Esta acción no se puede deshacer.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ef4444',
+            confirmButtonText: 'SÍ, ELIMINAR',
+            cancelButtonText: 'CANCELAR',
+            customClass: {
+                popup: 'rounded-[2.5rem]',
+                confirmButton: 'rounded-xl font-black text-xs px-6 py-3',
+                cancelButton: 'rounded-xl font-black text-xs px-6 py-3'
+            }
+        });
+
+        if (result.isConfirmed) {
+            try {
+                const response = await fetch(`http://localhost:8000/proyectos/eliminar/${projectId}`, { method: 'DELETE' });
+                if (response.ok) {
+                    await Swal.fire({
+                        title: 'ELIMINADO',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1000,
+                        customClass: { popup: 'rounded-[2.5rem]' }
+                    });
+                    fetchUserProjects();
+                }
+            } catch (error) { console.error(error); }
+        }
+    };
+
     return (
-        /* Se eliminó h-full y overflow-hidden para permitir que el contenido dicte la altura */
         <div className="min-h-screen bg-slate-50 flex flex-col font-sans" onClick={() => setMenuAbierto(null)}>
             <main className="flex-1 p-4 md:p-8">
                 <div className="max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
 
+                    {/* Header de la Página */}
                     <div className="flex flex-col mb-8 gap-4 border-b border-slate-200 pb-6">
                         <div>
                             <button
@@ -130,9 +99,9 @@ const UserProjects = () => {
                                 className="flex items-center gap-2 text-slate-400 hover:text-blue-600 transition-all font-black text-[10px] uppercase tracking-[0.2em] mb-4 group"
                             >
                                 <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-                                Regresar a Listado de Usuarios
+                                Regresar a Usuarios
                             </button>
-                            <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight italic">Proyectos del Usuario</h2>
+                            <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight italic uppercase">Proyectos del Usuario</h2>
                             <div className="flex items-center gap-2 mt-2">
                                 <span className="bg-slate-900 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">ID #{userId}</span>
                                 <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-lg text-xs font-black">
@@ -142,6 +111,7 @@ const UserProjects = () => {
                         </div>
                     </div>
 
+                    {/* Lista de Proyectos */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pb-20">
                         {loading ? (
                             <div className="col-span-full flex flex-col items-center justify-center py-20 gap-4">
@@ -157,7 +127,7 @@ const UserProjects = () => {
                                     </div>
 
                                     <div className="flex-1 min-w-0">
-                                        <h3 className="text-lg font-black text-slate-800 uppercase truncate mb-1">{proyecto.nombre_proyecto}</h3>
+                                        <h3 className="text-lg font-black text-slate-800 uppercase truncate mb-1 italic">{proyecto.nombre_proyecto}</h3>
                                         <div className="flex items-center gap-3 text-slate-400 text-xs font-bold">
                                             <Calendar size={12} className="text-blue-500" />
                                             {proyecto.fecha ? new Date(proyecto.fecha).toLocaleDateString() : 'S/F'}
@@ -165,25 +135,22 @@ const UserProjects = () => {
                                     </div>
 
                                     <div className="flex items-center gap-2">
-                                        {/* 1. Información */}
                                         <button
-                                            onClick={(e) => { e.stopPropagation(); showInfo(proyecto); }}
+                                            onClick={(e) => { e.stopPropagation(); handleOpenInfo(proyecto); }}
                                             className="p-3 bg-slate-50 text-slate-400 rounded-xl hover:bg-blue-100 hover:text-blue-600 transition-all active:scale-95"
-                                            title="Información"
+                                            title="Ver Info"
                                         >
                                             <Info size={18} strokeWidth={2.5} />
                                         </button>
 
-                                        {/* 2. Detalles */}
                                         <button
-                                            onClick={() => navigate(`/admin-dashboard/project-details/${proyecto.id}`)} // <-- Verifica esta ruta
+                                            onClick={() => navigate(`/admin-dashboard/project-details/${proyecto.id}`)}
                                             className="p-3 bg-slate-50 text-slate-900 rounded-xl hover:bg-blue-600 hover:text-white transition-all active:scale-95 shadow-sm"
-                                            title="Ver detalles"
+                                            title="Ver Reporte"
                                         >
                                             <ArrowRight size={18} strokeWidth={2.5} />
                                         </button>
 
-                                        {/* 3. Configuración */}
                                         <div className="relative">
                                             <button
                                                 onClick={(e) => {
@@ -224,7 +191,17 @@ const UserProjects = () => {
                 </div>
             </main>
 
-            {/* Modal de Edición - Ahora se renderiza condicionalmente de forma correcta */}
+            {/* Modal de Información */}
+            <ProjectInfoModal
+                isOpen={isInfoModalOpen}
+                onClose={() => {
+                    setIsInfoModalOpen(false);
+                    setSelectedProject(null);
+                }}
+                proyecto={selectedProject}
+            />
+
+            {/* Modal de Edición */}
             {isEditModalOpen && selectedProject && (
                 <EditProjectModal
                     isOpen={isEditModalOpen}
