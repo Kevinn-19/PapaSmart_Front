@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+*:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
