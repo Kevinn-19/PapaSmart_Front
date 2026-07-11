@@ -15,8 +15,8 @@ El proyecto permite gestionar empleados y sus beneficios mediante una API REST d
 
 - Backend: https://github.com/Kevinn-19/Symplifica-PT-backend
 - Frontend: https://github.com/Kevinn-19/Symplifica-PT-frontend
-- Google Drive:
-- Video demostrativo:
+- Google Drive: https://drive.google.com/drive/folders/1n6o5kuBrlRIA6pVTaEmLjgm4L7V0VuvL?usp=drive_link
+- Video demostrativo: https://drive.google.com/file/d/1FsO2qm0fs9VOPGqQp6uYDpaEy8bDguR-/view?usp=sharing
 
 El proyecto se encuentra dividido en dos repositorios independientes para separar el frontend y el backend. Ambos son orquestados mediante Docker Compose.
 
